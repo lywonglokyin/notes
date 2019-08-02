@@ -48,7 +48,7 @@ Generally we can write to the `ResponseWriter` using `fmt.Fprintf`.
 
 ## HTTP template
 
-With package `html/template`, we can create html file templates for responses.
+With package `html/template`, we can create html file templates for responses. P.S. Use `html/template` instead of `text/template` to prevent script injection.
 
 1. Prepare a template file
 2. Parse the template file using `template.ParseFiles()`
