@@ -18,3 +18,9 @@ They are both compiler-drivers of the GNU compiler Collection
 #define __EXCEPTIONS 1
 #define __private_extern__ extern
 ```
+
+
+## Important flags
+
+- gcc -Wall flag: It enables all compiler's warning message, and is always good to use for better code.
+- gcc [*options*] [*source file*] [*object file*] -o *output file*: Writes the build output to the output file
