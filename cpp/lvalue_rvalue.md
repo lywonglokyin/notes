@@ -2,6 +2,26 @@
 
 In simple terms, lvalue represents values that have names and exist in the memory which can be called. rvalue represents value that is temporary and will soon be destroyed.
 
+## Types of values
+There are three primary types of value in c++:
+- lvalue: designates a function or an object.
+- xvalue ("eXpiring" value): refers to object near the end of its lifetime
+- glvalue ("Generalized" lvalue): refers to lvalue or xvalue
+- rvalue: An xvalue, a temporary object, or sub-object, or a value that is not associated with any object
+- prvalue ("pure" rvalue): refers to rvalue that is not an xvalue
+
+Examples:
+#### lvalue
+- name of function, variable, or data member
+- pre-increment/decrement expression `++a`, `--a`
+- `*p` indirection expression
+#### prvalue
+- literals such as `42`, `true` or `nullptr`
+- non-reference return type functions, such as `str1 + str2`
+- post-increment/decrement expression `a++`, `a--`
+- `&a` address of expression
+#### xvalue
+- functions whose return type is a rvalue reference to object, such as `std::move(x)`
 ## rvalue reference
 ### When RVO is not available
 Consider three user-defined struct which represents vectors `a, b, c`.
