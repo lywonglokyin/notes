@@ -20,6 +20,7 @@ Examples:
 - non-reference return type functions, such as `str1 + str2`
 - post-increment/decrement expression `a++`, `a--`
 - `&a` address of expression
+* No polymorphism!
 #### xvalue
 - functions whose return type is a rvalue reference to object, such as `std::move(x)`
 ## rvalue reference
