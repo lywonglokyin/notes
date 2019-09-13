@@ -1,5 +1,5 @@
 # Volatile keyword
-Mainly used to counteract the optimization carried out by compilers.
+Mainly used to counteract the optimization carried out by compilers. Useful for developing embedded systems, or device drivers, where read or write to a **memory-mapped hardware device** is needed. Do NOT use `volatile` for synchronization. Use `atomic` instead.
 
 ## Optimization done by compilers
 
