@@ -99,3 +99,27 @@ boost::shared_array
 **Note**: To prevent multiple deletion on same object, `std::auto_ptr` has special copying behaviour. For example, `std::auto_ptr<A> newA(oldA)` would renders `oldA` as `null`. To facilitate normal copying of pointers, we can use `std::shared_ptr` which would keep track of total amount of pointers pointing to the object and ensure only one deletion.
 
 **Note**: `std::auto_ptr` and `std::shared_ptr` are not suitable for declaring dynamic arrays. Either use `std::vector` instead or refer to classes offered by `boost` shown above.
+
+Another use for RAII is for lock, and oftern time the class `std::tr1::shared_ptr` is used:
+
+```c++
+class Lock{
+  public:
+    explicit Lock(Mutex* pm){
+      lock(pm);
+      mutexPtr.reset(pm, unlock);
+    }
+  private:
+    std::shared_ptr<Mutex> mutexPtr;
+}
+```
+
+### Stored `new` objects in resource managing object in a **standalone** statement
+
+Consider the following statement:
+
+```c++
+processWidget(std::tr1::shared_ptr<Widget>(new Widget), priority())
+```
+
+The execution sequence is unknown, and exception thrown by `priority()` might cause `new Widget` as a memory leak.
