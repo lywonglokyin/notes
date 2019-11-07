@@ -188,3 +188,26 @@ s3://mybucket/scraping/feeds/%(name)s/%(time)s.json
 
 See https://docs.scrapy.org/en/latest/topics/feed-exports.html for more storage methods.
 
+## Logging
+
+Scrappy use Python's built-in logging system for event logging.
+
+It is recommended to use a separate logger for each instance, common use:
+```python
+import logging
+logger = logging.getLogger(__name__)
+logger.warning('this is a warning.')
+```
+
+There is also a `logger` for each spider, accessed by `self.logger`.
+
+Related logging settings can be seen at https://docs.scrapy.org/en/latest/topics/logging.html.
+
+## Deploying spiders
+
+- Scrapyd (open source)
+- Scrapy Cloud (cloud-based)
+
+## Middlewares
+
+Useful to implement peripheral requests, e.g. cookies, header
