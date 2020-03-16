@@ -70,6 +70,22 @@ With that, we can access the container with browser in `localhost:8000`!
 
 After that, we can delete the container with:
 
-```
+```cmd
 docker container rm --force bb
+```
+
+# Docker network
+
+## Step 1: Create a new network bridge
+
+Creating a new network bridge has two main advanrage: 1) More secure as only specified container are in this network 2) Allow resolution of container name to IP address.
+
+```cmd
+docker network create <net_name>
+```
+
+## Step 2: Link that network to a container during its start
+
+```cmd
+docker run --net <net_name> ...
 ```

@@ -45,7 +45,7 @@ CL (A4): Client Layer (Hub for order to enter UBS), client would only communicat
 
 ->
 
-CO (Client Sapphire - in Asia): Client order management layer. Would generate its own client ID (tag11). Maintain the state of order. (e.g. tag35=D, tag11=B12, tag526=A12). UBS people would look in CO are behaving normally. Also allocate orders to different region. Check client integrity (single order limit, etc).
+CO (CA) (Client Sapphire - in Asia): Client order management layer. Would generate its own client ID (tag11). Maintain the state of order. (e.g. tag35=D, tag11=B12, tag526=A12). UBS people would look in CO are behaving normally. Also allocate orders to different region. Check client integrity (single order limit, etc).
 
 MO (MKT Sapphire) (Market OMS): Different MO for different markets (different market has different rules)
 
