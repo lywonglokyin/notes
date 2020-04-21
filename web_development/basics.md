@@ -152,7 +152,8 @@ Core modules are modules built-in for the node.js. They can be called in with th
 
     f. `createReadStream`
 
-    g. `createWriteStream`
+    g. `createWriteStream`: Remember to use `pipe()` for easy stream connecting!
+
 
 3. `http`: A module for hosting a server.
 
@@ -160,7 +161,8 @@ Core modules are modules built-in for the node.js. They can be called in with th
 
     ```js
     var server = http.createServer(function(req, res){
-        res.writeHead(200, {Headers...});
+        res.statusCode = 200
+        res.setHeader({'Content-Type', 'text/plain'});
         res.end('some text to end response...')
     })
 
@@ -171,3 +173,54 @@ Core modules are modules built-in for the node.js. They can be called in with th
     Useful properties:
 
     - `req.url`: return the resource part of the request url.
+
+
+## Signaling
+
+### Terminating gracefully with Ctrl+C
+
+Pressing Ctrl+C basically means the system issues a `SIGINT` to the program. We can catch such signal and provide instructions by:
+
+```js
+process.on('SIGINT', ()=>{
+  server.close(()=>{
+    console.log('Gracefully shut down.');
+  })
+})
+```
+
+## Environment variables
+
+### `dotenv` method
+
+1. Store env variable in a `.env` file (without pushing it with `git`)
+2. Load the `.env` file with `dotenv` (`require('dotenv')`)
+
+
+## Arg parsing
+
+Arg can generally be obtain with the attribute `process.argv`, for example:
+```js
+process.argv.forEach((val, index) => {
+  console.log(`${index}: ${val}`)
+})
+```
+if we run with:
+```bash
+node app.js waitwhat
+```
+The following would be printed:
+```
+0: \user\local\bin\node
+1: \path\to\app.js
+2: waitwhat
+```
+
+Another way is to use the `minimist` module provided in node.js.
+
+
+## Returning json file
+
+1. Define a dict obj
+2. use `res.end()` and `JSON.stringify(obj)` to return the result.
+
