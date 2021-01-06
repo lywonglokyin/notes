@@ -1,0 +1,5 @@
+# Angular symbols
+
+## `@Input`
+
+## `@Injectable`
