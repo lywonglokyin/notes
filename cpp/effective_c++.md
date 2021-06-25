@@ -1,11 +1,11 @@
 # Effective C++
 
-## Chapter 1
+# Chapter 1
 
-### Prefer `const`, `enum` and `inline` to `#define`
+## Prefer `const`, `enum` and `inline` to `#define`
 1. Items defined by preprocessor does not appear in compiler hence will result in confusing error messages
 
-### Use `const` whenever possible
+## Use `const` whenever possible
 
 1. For objects or literal, use `const`
 2. For pointer, use `const T*` (const data), `T* const` (const pointer) or `const T* const` for different uses.
@@ -13,11 +13,13 @@
 4. Functions like `operator+` should return `const` object.
 5. Overloading member functions to give a `const` version is sometimes useful. (E.g Non-const version of a getter function allows modification while const version do not.)
 
-### Get around `const` member function: `mutable`
+## Get around `const` member function: `mutable`
 
 Sometimes we would like to change some of the member data even in a `const` member function. We can add the `mutable` keyword to these data members such that they can be modified.
 
-### Get around code duplication with defining the const and non-const function
+Usage: Caching, mutex locks
+
+## Get around code duplication with defining the const and non-const function
 
 It is always bad to duplicate code. In case the const and non-const member function are highly similar, we can use const-cast to get around just like this example, which represents the non-const function:
 ```c++
@@ -27,11 +29,11 @@ Here we have to first cast `this` object into a const version in order for it to
 
 Note that as `const` function made promise not to change any data member while non-const functions did not, it is always undesirable for `const` functions to call non-const function and then cast for `const` return.
 
-### Initialize data member using member initilization list
+## Initialize data member using member initilization list
 
 In this case, object data member are initialized with copy constructor, instead of being initialized with default constructor, then assign with assignment operator.
 
-### Uncertainty on non-local static member initialization
+## Uncertainty on non-local static member initialization
 
 C++ cannot guarantee the order of initialization across different files. Consider the following example:
 
@@ -85,9 +87,9 @@ Directory::Directory(params){
 ```
 The call to the static `tfs` object becomes a call to the function `tfs()`. And it is probably good to `inline` these wrapping functions.
 
-## Chapter 3
+# Chapter 3
 
-### Allocate resources using resource managing objects
+## Allocate resources using resource managing objects
 
 Each `new` comes with a `delete`. In this sense, statements in between this pair may interfere with the execution of `delete` statement and cause memory leak. This is best to use wrapper `auto_ptr`,etc. and let the destructor to delete the dynamic object you want to allocate. Related class:
 ```c++
@@ -114,7 +116,7 @@ class Lock{
 }
 ```
 
-### Stored `new` objects in resource managing object in a **standalone** statement
+## Stored `new` objects in resource managing object in a **standalone** statement
 
 Consider the following statement:
 

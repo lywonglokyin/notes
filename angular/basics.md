@@ -31,3 +31,10 @@ Specify the providers of services that components in other NgModules can use. (?
 ### `bootstrap`
 
 Specify the entry component that Angular creates and inserts to index.html host web page (Usually would also be the `AppComponent`). The bootstrapping process will then create the components listed, and insert each one to the DOM.
+
+
+## Angular change detection
+
+Default: "CheckAlways"
+
+Possible: "CheckOnce"
